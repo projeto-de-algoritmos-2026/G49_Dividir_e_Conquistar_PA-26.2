@@ -1,0 +1,9 @@
+[
+  { "id": 0, "nome": "Você", "bio": "Edite seu perfil!", "cidade": "Brasília - DF", "latitude": -15.7939, "longitude": -47.8828, "ehVoce": true },
+  { "id": 1, "nome": "Ana", "bio": "Café, trilhas e música ao vivo.", "cidade": "Goiânia - GO", "latitude": -16.6869, "longitude": -49.2648, "ehVoce": false },
+  { "id": 2, "nome": "Bruno", "bio": "Dev de dia, skatista de noite.", "cidade": "São Paulo - SP", "latitude": -23.5505, "longitude": -46.6333, "ehVoce": false },
+  { "id": 3, "nome": "Carla", "bio": "Praia é terapia.", "cidade": "Rio de Janeiro - RJ", "latitude": -22.9068, "longitude": -43.1729, "ehVoce": false },
+  { "id": 4, "nome": "Diego", "bio": "Pão de queijo é vida.", "cidade": "Belo Horizonte - MG", "latitude": -19.9167, "longitude": -43.9345, "ehVoce": false },
+  { "id": 5, "nome": "Elisa", "bio": "Fotografia e acarajé.", "cidade": "Salvador - BA", "latitude": -12.9777, "longitude": -38.5016, "ehVoce": false },
+  { "id": 6, "nome": "Felipe", "bio": "Floresta, rio e livros.", "cidade": "Manaus - AM", "latitude": -3.119, "longitude": -60.0217, "ehVoce": false }
+]

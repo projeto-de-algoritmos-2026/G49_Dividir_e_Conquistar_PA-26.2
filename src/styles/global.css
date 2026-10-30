@@ -1,0 +1,38 @@
+/* TODO (#6): identidade visual, paleta, tipografia e responsividade */
+:root {
+  --fundo: #f6f5f2;
+  --texto: #1d1d1f;
+  --destaque: #e4572e;
+  font-family: system-ui, sans-serif;
+  color: var(--texto);
+  background: var(--fundo);
+}
+
+body {
+  margin: 0;
+}
+
+.topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #ddd;
+}
+
+.topo nav {
+  display: flex;
+  gap: 1rem;
+}
+
+.logo {
+  font-weight: 700;
+  color: var(--destaque);
+  text-decoration: none;
+}
+
+.conteudo {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
