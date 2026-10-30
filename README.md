@@ -7,7 +7,7 @@
 
 | Matrícula | Aluno |
 | -- | -- |
-| xx/xxxxxxx | Gabriel Sampaio (Pessoa A) |
+| 231011382 | Gabriel Sampaio (Pessoa A) |
 | xx/xxxxxxx | Samuel (Pessoa B) |
 
 ## Sobre
