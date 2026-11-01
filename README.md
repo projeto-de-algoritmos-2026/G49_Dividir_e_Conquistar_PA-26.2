@@ -21,7 +21,7 @@ A rede tem **7 usuários**: você e mais 6 perfis fictícios em cidades diferent
 
 ### O algoritmo
 
-A localização de cada usuário (latitude/longitude) é convertida em um ponto no plano, em km, por uma projeção equiretangular. Depois o algoritmo **Par de Pontos Mais Próximos** encontra, entre todos os usuários, as duas pessoas que estão mais perto uma da outra:
+A localização de cada usuário (latitude/longitude) é convertida em um ponto no plano, em km, por uma projeção equiretangular (centrada na latitude de Brasília). Para as cidades do seed, a distância no plano difere da distância real (fórmula de haversine) em 0,8% em média e no máximo 4,5% (São Paulo–Rio), o que não muda o par mais próximo. Depois o algoritmo **Par de Pontos Mais Próximos** encontra, entre todos os usuários, as duas pessoas que estão mais perto uma da outra:
 
 1. **Pré-processamento**: ordena os pontos por `x` e por `y`, uma única vez.
 2. **Dividir**: separa os pontos em duas metades pela mediana de `x`.
@@ -72,6 +72,7 @@ Depois, abra o endereço mostrado no terminal (por padrão, http://localhost:517
 ├── index.html               # página de menu
 ├── perfil.html              # página de perfil
 ├── src/
+│   ├── layout.ts            # estilo global, aba ativa e "resetar dados"
 │   ├── algoritmo/
 │   │   ├── parMaisProximo.ts  # dividir e conquistar, O(n log n)
 │   │   ├── forcaBruta.ts      # referência O(n²) para os testes
@@ -94,8 +95,8 @@ São 5 tarefas por pessoa, cada uma com uma issue no GitHub. Os detalhes estão 
 
 | Pessoa A — Gabriel | Pessoa B — Samuel |
 | -- | -- |
-| [#1](https://github.com/projeto-de-algoritmos-2026/G49_Dividir_e_Conquistar_PA-26.2/issues/1) Modelagem dos dados e banco local | [#6](https://github.com/projeto-de-algoritmos-2026/G49_Dividir_e_Conquistar_PA-26.2/issues/6) Layout base e identidade visual |
-| [#2](https://github.com/projeto-de-algoritmos-2026/G49_Dividir_e_Conquistar_PA-26.2/issues/2) Algoritmo par de pontos mais próximos | [#7](https://github.com/projeto-de-algoritmos-2026/G49_Dividir_e_Conquistar_PA-26.2/issues/7) Página de menu com os cards |
+| ✅ [#1](https://github.com/projeto-de-algoritmos-2026/G49_Dividir_e_Conquistar_PA-26.2/issues/1) Modelagem dos dados e banco local | ✅ [#6](https://github.com/projeto-de-algoritmos-2026/G49_Dividir_e_Conquistar_PA-26.2/issues/6) Layout base e identidade visual |
+| ✅ [#2](https://github.com/projeto-de-algoritmos-2026/G49_Dividir_e_Conquistar_PA-26.2/issues/2) Algoritmo par de pontos mais próximos | [#7](https://github.com/projeto-de-algoritmos-2026/G49_Dividir_e_Conquistar_PA-26.2/issues/7) Página de menu com os cards |
 | [#3](https://github.com/projeto-de-algoritmos-2026/G49_Dividir_e_Conquistar_PA-26.2/issues/3) Força bruta + testes de validação | [#8](https://github.com/projeto-de-algoritmos-2026/G49_Dividir_e_Conquistar_PA-26.2/issues/8) Página de perfil com edição de localização |
 | [#4](https://github.com/projeto-de-algoritmos-2026/G49_Dividir_e_Conquistar_PA-26.2/issues/4) Integração do algoritmo com a interface | [#9](https://github.com/projeto-de-algoritmos-2026/G49_Dividir_e_Conquistar_PA-26.2/issues/9) Card de match e visualização dos pontos |
 | [#5](https://github.com/projeto-de-algoritmos-2026/G49_Dividir_e_Conquistar_PA-26.2/issues/5) Documentação final e vídeo | [#10](https://github.com/projeto-de-algoritmos-2026/G49_Dividir_e_Conquistar_PA-26.2/issues/10) Testes manuais, revisão e gravação |

@@ -1,4 +1,4 @@
-import "../styles/global.css";
+import "../layout";
 import { carregarUsuarios, usuarioAtual } from "../dados/banco";
 
 // Página de perfil: exibe e edita os dados do usuário principal.
@@ -8,7 +8,14 @@ const app = document.querySelector<HTMLElement>("#app")!;
 const voce = usuarioAtual(carregarUsuarios());
 
 app.innerHTML = `
-  <h1>${voce.nome}</h1>
-  <p>${voce.bio}</p>
-  <p>${voce.cidade} (${voce.latitude}, ${voce.longitude})</p>
+  <section class="caixa">
+    <h1 class="caixa-titulo">${voce.nome}</h1>
+    <div class="caixa-corpo card">
+      <div class="avatar">${voce.nome[0]}</div>
+      <div>
+        <p>${voce.bio}</p>
+        <p><span class="selo">${voce.cidade}</span> (${voce.latitude}, ${voce.longitude})</p>
+      </div>
+    </div>
+  </section>
 `;
