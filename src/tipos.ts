@@ -22,6 +22,16 @@ export interface ResultadoPar {
   distancia: number;
 }
 
+/** Primeira chamada recursiva do dividir e conquistar, para a visualização (#9) */
+export interface Divisao {
+  /** x da linha divisória (mediana de x) */
+  xMeio: number;
+  /** δ = min(δ_esq, δ_dir), antes de olhar a faixa */
+  delta: number;
+  /** ids dos pontos que caíram na faixa de largura 2δ */
+  faixa: number[];
+}
+
 /** Quantas distâncias um algoritmo calculou (para comparar as duas versões) */
 export interface Contador {
   distancias: number;
