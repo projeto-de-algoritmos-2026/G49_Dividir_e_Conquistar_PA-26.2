@@ -48,7 +48,10 @@ Se você faz parte do par mais próximo, o menu mostra quem é o seu "match". Se
 
 ## Screenshots
 
-> Serão adicionadas ao final do desenvolvimento ([#5](https://github.com/projeto-de-algoritmos-2026/G49_Dividir_e_Conquistar_PA-26.2/issues/5), [#10](https://github.com/projeto-de-algoritmos-2026/G49_Dividir_e_Conquistar_PA-26.2/issues/10)).
+![menu](image.png)
+![amigos](image-1.png)
+![rede](image-2.png)
+![meu-perfil](image-3.png)
 
 ## Instalação
 
@@ -132,6 +135,10 @@ São 5 tarefas por pessoa, cada uma com uma issue no GitHub. Os detalhes estão 
 | ✅ [#3](https://github.com/projeto-de-algoritmos-2026/G49_Dividir_e_Conquistar_PA-26.2/issues/3) Força bruta + testes de validação | ✅ [#8](https://github.com/projeto-de-algoritmos-2026/G49_Dividir_e_Conquistar_PA-26.2/issues/8) Página de perfil com edição de localização |
 | ✅ [#4](https://github.com/projeto-de-algoritmos-2026/G49_Dividir_e_Conquistar_PA-26.2/issues/4) Integração do algoritmo com a interface | [#9](https://github.com/projeto-de-algoritmos-2026/G49_Dividir_e_Conquistar_PA-26.2/issues/9) Card de match e visualização dos pontos |
 | [#5](https://github.com/projeto-de-algoritmos-2026/G49_Dividir_e_Conquistar_PA-26.2/issues/5) Documentação final e vídeo | [#10](https://github.com/projeto-de-algoritmos-2026/G49_Dividir_e_Conquistar_PA-26.2/issues/10) Testes manuais, revisão e gravação |
+
+## Vídeo do trabalho
+
+https://youtu.be/KnFZGqIpzlQ
 
 ## Outros
 
