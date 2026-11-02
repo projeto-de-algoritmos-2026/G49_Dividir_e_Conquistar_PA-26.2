@@ -1,6 +1,7 @@
 import "../layout";
 import { calcularMatch } from "../algoritmo/match";
 import { htmlListaDeAmigos, htmlPlayer, ligarPlayer } from "../componentes/widgets";
+import { htmlPlanoPontos, ligarPlanoPontos } from "../componentes/planoPontos";
 import { spriteBichinho } from "../componentes/sprites";
 import { carregarUsuarios } from "../dados/banco";
 import { carregarBichinho } from "../dados/bichinhos";
@@ -24,9 +25,15 @@ if (match) {
     <div class="match-box">
       <div class="match-resultado">
         <div class="match-par">
-          <div class="avatar ${userA.ehVoce ? "avatar-voce" : ""}">${escapeHtml(userA.nome[0] ?? "?")}</div>
+          <div class="match-pessoa">
+            <div class="avatar ${userA.ehVoce ? "avatar-voce" : ""}">${escapeHtml(userA.nome[0] ?? "?")}</div>
+            <span class="match-nome">${escapeHtml(userA.nome)}</span>
+          </div>
           <span class="match-coracao" title="Match mais próximo">♥</span>
-          <div class="avatar ${userB.ehVoce ? "avatar-voce" : ""}">${escapeHtml(userB.nome[0] ?? "?")}</div>
+          <div class="match-pessoa">
+            <div class="avatar ${userB.ehVoce ? "avatar-voce" : ""}">${escapeHtml(userB.nome[0] ?? "?")}</div>
+            <span class="match-nome">${escapeHtml(userB.nome)}</span>
+          </div>
           <div class="match-texto-destaque">
             ${
               parceiro
@@ -51,10 +58,7 @@ if (match) {
 
       <p class="match-como"><a href="/algoritmo.html">Como isso foi calculado? Compare com a força bruta →</a></p>
 
-      <!-- Área reservada para visualização gráfica (Issue #9): usar match.pontos, match.usuarioA/B e match.distancia (δ) -->
-      <div id="area-visualizacao-grafica" class="area-visualizacao-reservada">
-        <span>✦ <strong>Visualização dos Pontos (Issue #9)</strong>: espaço reservado para mapa e plano cartesiano do algoritmo D&amp;C.</span>
-      </div>
+      ${htmlPlanoPontos(match, usuarios)}
     </div>
   `;
 } else {
@@ -124,3 +128,4 @@ app.innerHTML = `
 `;
 
 ligarPlayer();
+ligarPlanoPontos();

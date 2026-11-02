@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { parMaisProximoForcaBruta } from "../src/algoritmo/forcaBruta";
 import { paraPonto } from "../src/algoritmo/geo";
 import { calcularMatch } from "../src/algoritmo/match";
-import { parMaisProximo } from "../src/algoritmo/parMaisProximo";
+import { parMaisProximo, type Rastro } from "../src/algoritmo/parMaisProximo";
 import seed from "../src/dados/usuarios.json";
 import type { Contador, Ponto, ResultadoPar, Usuario } from "../src/tipos";
 
@@ -134,6 +134,24 @@ describe("parMaisProximo", () => {
     expect(bruta.distancias).toBe((10000 * 9999) / 2);
     expect(dc.distancias).toBeLessThan(10000 * Math.log2(10000));
   });
+
+  it("registra a divisória e a faixa 2δ da primeira chamada (#9)", () => {
+    // Metades: {0,1,2} e {3,4,5}; nos dois lados o melhor par é (49,50) → δ = hypot(49, 50) ≈ 70
+    const pontos = pontosDe([0, 0], [0, 100], [49, 50], [51, 50], [100, 0], [100, 100]);
+    const rastro: Rastro = {};
+    const r = parMaisProximo(pontos, undefined, rastro);
+
+    expect(rastro.divisao?.xMeio).toBe(51); // x do 4º ponto em ordem de x
+    expect(rastro.divisao?.delta).toBeCloseTo(Math.hypot(49, 50), 9);
+    expect(rastro.divisao?.faixa.sort()).toEqual([0, 1, 2, 3, 4, 5]); // todos a menos de 70 de x = 51
+    expect(rastro.divisao?.delta).toBeGreaterThanOrEqual(r?.distancia ?? Infinity);
+  });
+
+  it("não registra divisão no caso base", () => {
+    const rastro: Rastro = {};
+    parMaisProximo(pontosDe([0, 0], [50, 50], [51, 50]), undefined, rastro);
+    expect(rastro.divisao).toBeUndefined();
+  });
 });
 
 describe("calcularMatch", () => {
@@ -141,6 +159,18 @@ describe("calcularMatch", () => {
     const match = calcularMatch(usuarios);
     expect(match?.parceiro?.nome).toBe("Ana");
     expect(match?.pontos).toHaveLength(usuarios.length);
+  });
+
+  it("entrega a divisão pronta para a visualização", () => {
+    const match = calcularMatch(usuarios);
+    const divisao = match?.divisao;
+    expect(divisao).not.toBeNull();
+    // Toda pessoa marcada na faixa está a menos de δ da divisória
+    for (const id of divisao?.faixa ?? []) {
+      const p = match?.pontos.find((q) => q.id === id);
+      expect(Math.abs((p?.x ?? Infinity) - (divisao?.xMeio ?? 0))).toBeLessThan(divisao?.delta ?? 0);
+    }
+    expect(calcularMatch(usuarios.slice(0, 3))?.divisao).toBeNull();
   });
 
   it("muda o resultado quando você troca de cidade", () => {

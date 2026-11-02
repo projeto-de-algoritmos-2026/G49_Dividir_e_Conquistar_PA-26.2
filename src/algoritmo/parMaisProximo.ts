@@ -1,4 +1,4 @@
-import type { Contador, Ponto, ResultadoPar } from "../tipos";
+import type { Contador, Divisao, Ponto, ResultadoPar } from "../tipos";
 import { distancia } from "./geo";
 
 interface Melhor {
@@ -7,9 +7,15 @@ interface Melhor {
   d: number;
 }
 
+/** Onde guardar a primeira divisão, se quem chama quiser desenhá-la */
+export interface Rastro {
+  divisao?: Divisao;
+}
+
 export function parMaisProximo(
   pontos: Ponto[],
   contador: Contador = { distancias: 0 },
+  rastro?: Rastro,
 ): ResultadoPar | null {
   if (pontos.length < 2) return null;
 
@@ -18,7 +24,7 @@ export function parMaisProximo(
   const py = [...indices].sort((i, j) => pontos[i].y - pontos[j].y);
   const naEsquerda = new Array<boolean>(pontos.length).fill(false);
 
-  const { i, j, d } = resolver(pontos, px, py, naEsquerda, contador);
+  const { i, j, d } = resolver(pontos, px, py, naEsquerda, contador, rastro);
   return { a: pontos[i], b: pontos[j], distancia: d };
 }
 
@@ -28,6 +34,7 @@ function resolver(
   py: number[],
   naEsquerda: boolean[],
   contador: Contador,
+  rastro?: Rastro,
 ): Melhor {
   const n = px.length;
   if (n <= 3) return forcaBruta(pontos, px, contador);
@@ -48,6 +55,8 @@ function resolver(
   let melhor = esq.d <= dir.d ? esq : dir;
 
   const faixa = py.filter((i) => Math.abs(pontos[i].x - xMeio) < melhor.d);
+  // Só a chamada do topo recebe o rastro: as recursivas acima passam undefined
+  if (rastro) rastro.divisao = { xMeio, delta: melhor.d, faixa: faixa.map((i) => pontos[i].id) };
   for (let a = 0; a < faixa.length; a++) {
     for (let b = a + 1; b < faixa.length && b <= a + 7; b++) {
       const p = pontos[faixa[a]];
