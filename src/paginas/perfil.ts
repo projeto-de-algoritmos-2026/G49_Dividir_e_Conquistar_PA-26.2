@@ -1,13 +1,9 @@
 import "../layout";
+import { montarTamagotchi } from "../componentes/bichinho";
 import { carregarUsuarios, salvarUsuarios, usuarioAtual } from "../dados/banco";
 import { CIDADES_BRASIL } from "../dados/cidades";
+import { escapeHtml } from "../html";
 import type { Usuario } from "../tipos";
-
-function escapeHtml(texto: string): string {
-  const div = document.createElement("div");
-  div.textContent = texto;
-  return div.innerHTML;
-}
 
 const app = document.querySelector<HTMLElement>("#app");
 if (!app) throw new Error("Elemento #app não encontrado no DOM");
@@ -44,9 +40,15 @@ app.innerHTML = `
             </div>
           </div>
         </article>
+        <p class="match-como"><a href="/pessoa.html?id=${voce.id}">Ver minha página, como os outros veem →</a></p>
       </div>
     </section>
   </div>
+
+  <section class="caixa">
+    <h2 class="caixa-titulo">Meu bichinho</h2>
+    <div class="caixa-corpo" id="area-bichinho"></div>
+  </section>
 
   <section class="caixa">
     <h2 class="caixa-titulo">Editar meus dados e localização</h2>
@@ -143,6 +145,8 @@ app.innerHTML = `
     </div>
   </section>
 `;
+
+montarTamagotchi(document.querySelector<HTMLElement>("#area-bichinho")!);
 
 // Elementos da interface
 const form = document.querySelector<HTMLFormElement>("#form-perfil")!;

@@ -21,3 +21,8 @@ export interface ResultadoPar {
   b: Ponto;
   distancia: number;
 }
+
+/** Quantas distâncias um algoritmo calculou (para comparar as duas versões) */
+export interface Contador {
+  distancias: number;
+}
